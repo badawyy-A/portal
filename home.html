@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Portal</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    .search-bar {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    body {
+      background-color: #f8f9fa;
+    }
+    .sidebar {
+      background-color: #343a40;
+      color: #fff;
+      height: 100vh;
+      padding: 20px;
+    }
+    .sidebar .list-group-item {
+      background-color: transparent;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+    }
+    .sidebar .list-group-item.active {
+      background-color: #007bff;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 sidebar">
+        <!-- Sidebar -->
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action active">Home</a>
+          <a href="#" class="list-group-item list-group-item-action">Settings</a>
+          <a href="#" class="list-group-item list-group-item-action">Users</a>
+          <a href="#" class="list-group-item list-group-item-action">Search</a>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <!-- Main Content -->
+        <div class="search-bar">
+          <form action="search-results.html" method="get">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search..." name="query">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Search</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

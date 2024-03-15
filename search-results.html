@@ -1,0 +1,177 @@
+<!-- search-results.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .sidebar {
+      background-color: #343a40;
+      color: #fff;
+      height: 100vh;
+      padding: 20px;
+    }
+    .sidebar .list-group-item {
+      background-color: transparent;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+    }
+    .sidebar .list-group-item.active {
+      background-color: #007bff;
+      color: #fff;
+    }
+    .search-bar {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    .details-sidebar {
+      background-color: #343a40;
+      color: #fff;
+      height: 100vh;
+      padding: 20px;
+      position: fixed;
+      right: -300px;
+      top: 0;
+      width: 300px;
+      transition: right 0.3s ease-in-out;
+    }
+    .details-sidebar.show {
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 sidebar">
+        <!-- Sidebar -->
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action">Home</a>
+          <a href="#" class="list-group-item list-group-item-action">Settings</a>
+          <a href="#" class="list-group-item list-group-item-action">Users</a>
+          <a href="#" class="list-group-item list-group-item-action active">Search</a>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <!-- Main Content -->
+        <div class="search-bar">
+          <form action="#" method="get">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search..." name="query">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Search</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Location</th>
+                <th>Date of Birth</th>
+                <th>Creation Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-toggle="details-sidebar">
+                <td>John</td>
+                <td>Doe</td>
+                <td>john.doe@example.com</td>
+                <td>123 Main St, Anytown USA</td>
+                <td>555-1234</td>
+                <td>New York, NY</td>
+                <td>1990-05-15</td>
+                <td>2022-03-21</td>
+              </tr>
+              <tr data-toggle="details-sidebar">
+                <td>Jane</td>
+                <td>Smith</td>
+                <td>jane.smith@example.com</td>
+                <td>456 Oak Ave, Someville CA</td>
+                <td>555-5678</td>
+                <td>Los Angeles, CA</td>
+                <td>1985-09-22</td>
+                <td>2021-11-03</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <nav>
+          <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1">Previous</a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Next</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- Details Sidebar -->
+  <div class="details-sidebar">
+    <h5>Details</h5>
+    <p><strong>First Name:</strong> <span id="first-name"></span></p>
+    <p><strong>Last Name:</strong> <span id="last-name"></span></p>
+    <p><strong>Email:</strong> <span id="email"></span></p>
+    <p><strong>Address:</strong> <span id="address"></span></p>
+    <p><strong>Phone:</strong> <span id="phone"></span></p>
+    <p><strong>Location:</strong> <span id="location"></span></p>
+    <p><strong>Date of Birth:</strong> <span id="date-of-birth"></span></p>
+    <p><strong>Creation Date:</strong> <span id="creation-date"></span></p>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Toggle sidebar
+      $('[data-toggle="sidebar"]').on('click', function() {
+        $('.sidebar').toggleClass('collapsed');
+      });
+
+      // Toggle details sidebar
+      $('[data-toggle="details-sidebar"]').on('click', function() {
+        $('.details-sidebar').addClass('show');
+        var row = $(this).closest('tr');
+        $('#first-name').text(row.find('td:eq(0)').text());
+        $('#last-name').text(row.find('td:eq(1)').text());
+        $('#email').text(row.find('td:eq(2)').text());
+        $('#address').text(row.find('td:eq(3)').text());
+        $('#phone').text(row.find('td:eq(4)').text());
+        $('#location').text(row.find('td:eq(5)').text());
+        $('#date-of-birth').text(row.find('td:eq(6)').text());
+        $('#creation-date').text(row.find('td:eq(7)').text());
+      });
+
+      // Close details sidebar
+      $('.details-sidebar').on('click', function(e) {
+        if (e.target === this) {
+          $(this).removeClass('show');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
